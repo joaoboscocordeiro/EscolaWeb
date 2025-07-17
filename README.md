@@ -1,14 +1,12 @@
-# Biblioteca
-Aplicação EscolaWeb
+# EscolaWeb
+Aplicação Para Controle de Alunos
 
 ----------------------------------------------------------------------------------------------------
 
-## APLICAÇÃO ASP.NET 9.0 C#
+# Tecnologias Usadas:
 
 #### 1 - Linguagem C#
 #### 2 - DB SQLServer
-#### 3 - Dtos
-#### 4 - AutoMapper
-#### 5 - Authorization
+#### 3 - ASP.NET 9.0
 
 ----------------------------------------------------------------------------------------------------
