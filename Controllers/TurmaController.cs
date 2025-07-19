@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EscolaWeb.Services.Turma;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaWeb.Controllers
 {
     public class TurmaController : Controller
     {
-        public IActionResult Index()
+        private readonly ITurmaInterface _turmaInterface;
+
+        public TurmaController(ITurmaInterface turmaInterface)
         {
-            return View();
+            _turmaInterface = turmaInterface;
+        }
+
+        public IActionResult BuscarTurmas()
+        {
+            var turmas = _turmaInterface.BuscarTurmas();
+            return View(turmas);
         }
     }
 }
