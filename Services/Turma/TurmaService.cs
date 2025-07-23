@@ -25,5 +25,37 @@ namespace EscolaWeb.Services.Turma
                 throw new Exception(ex.Message);
             }
         }
+
+        public TurmaModel CadastrarTurma(TurmaModel turmaModel)
+        {
+            try
+            {
+                if (!VerificaNomeTurma(turmaModel))
+                {
+                    return null;
+                }
+
+                _context.Turmas.Add(turmaModel);
+                _context.SaveChanges();
+
+                return turmaModel;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private bool VerificaNomeTurma(TurmaModel turmaModel)
+        {
+            var turma = _context.Turmas.FirstOrDefault(turma => turma.Descricao == turmaModel.Descricao);
+
+            if (turma == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
