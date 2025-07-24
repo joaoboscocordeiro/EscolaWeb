@@ -5,5 +5,6 @@ namespace EscolaWeb.Services.Professor
     public interface IProfessorInterface
     {
         List<ProfessorModel> BuscarProfessores();
+        ProfessorModel ObterProfessorComTurmasEAlunos(int id);
     }
 }

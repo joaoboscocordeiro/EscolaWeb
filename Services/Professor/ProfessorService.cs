@@ -25,5 +25,23 @@ namespace EscolaWeb.Services.Professor
                 return null;
             }
         }
+
+        public ProfessorModel ObterProfessorComTurmasEAlunos(int id)
+        {
+            try
+            {
+                var professorTurmasAlunos = _context.Professores
+                    .Where(p => p.Id == id)
+                    .Include(t => t.Turmas)
+                    .ThenInclude(a => a.Alunos)
+                    .FirstOrDefault();
+
+                return professorTurmasAlunos;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

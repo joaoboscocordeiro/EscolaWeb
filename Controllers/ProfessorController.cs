@@ -12,10 +12,24 @@ namespace EscolaWeb.Controllers
             _professorInterface = professorInterface;
         }
 
+        [HttpGet]
         public IActionResult ListarProfessor()
         {
             var professores = _professorInterface.BuscarProfessores();
             return View(professores);
+        }
+
+        [HttpGet("id")]
+        public IActionResult DetalhesProfessor(int id)
+        {
+            var professores = _professorInterface.ObterProfessorComTurmasEAlunos(id);
+            return View(professores);
+        }
+
+        [HttpPost]
+        public IActionResult CadastrarProfessor()
+        {
+            return View();
         }
     }
 }
