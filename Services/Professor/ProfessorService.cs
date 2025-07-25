@@ -27,6 +27,23 @@ namespace EscolaWeb.Services.Professor
             }
         }
 
+        public List<ProfessorModel> BuscarProfessorPorTurma(int idTurma)
+        {
+            try
+            {
+                var professoresDaTurma = _context.Turmas
+                    .Where(t => t.Id == idTurma)
+                    .SelectMany(p => p.Professores)
+                    .Include(m => m.Materia).ToList();
+
+                return professoresDaTurma;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public ProfessorModel CadastrarProfessor(ProfessorCriacaoDto professorCriacaoDto)
         {
             try

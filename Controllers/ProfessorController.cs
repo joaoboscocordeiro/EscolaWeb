@@ -38,6 +38,14 @@ namespace EscolaWeb.Controllers
         }
 
         [HttpGet]
+        [Route("/Professor/ProfessoresDaTurma/{idTurma}")]
+        public IActionResult ProfessoresDaTurma(int idTurma)
+        {
+            var professores = _professorInterface.BuscarProfessorPorTurma(idTurma);
+            return Json(new {dados = professores});
+        }
+
+        [HttpGet]
         public IActionResult CadastrarProfessor()
         {
             BuscarTurmas();

@@ -8,5 +8,6 @@ namespace EscolaWeb.Services.Professor
         List<ProfessorModel> BuscarProfessores();
         ProfessorModel ObterProfessorComTurmasEAlunos(int id);
         ProfessorModel CadastrarProfessor(ProfessorCriacaoDto professorCriacaoDto);
+        List<ProfessorModel> BuscarProfessorPorTurma(int idTurma);
     }
 }
