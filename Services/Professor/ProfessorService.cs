@@ -1,4 +1,5 @@
 ﻿using EscolaWeb.Data;
+using EscolaWeb.Dtos.Professor;
 using EscolaWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,32 @@ namespace EscolaWeb.Services.Professor
                 return professores;
             }
             catch 
+            {
+                return null;
+            }
+        }
+
+        public ProfessorModel CadastrarProfessor(ProfessorCriacaoDto professorCriacaoDto)
+        {
+            try
+            {
+                var turmasSelecionadas = _context.Turmas.Where(t => professorCriacaoDto.TurmasId.Contains(t.Id)).ToList();
+
+                var professorModel = new ProfessorModel
+                {
+                    Nome = professorCriacaoDto.Nome,
+                    Email = professorCriacaoDto.Email,
+                    DataContratacao = professorCriacaoDto.DataContratacao,
+                    MateriaId = professorCriacaoDto.MateriaId,
+                    Turmas = turmasSelecionadas
+                };
+
+                _context.Professores.Add(professorModel);
+                _context.SaveChanges();
+
+                return professorModel;
+            }
+            catch
             {
                 return null;
             }

@@ -1,4 +1,5 @@
-﻿using EscolaWeb.Models;
+﻿using EscolaWeb.Dtos.Professor;
+using EscolaWeb.Models;
 
 namespace EscolaWeb.Services.Professor
 {
@@ -6,5 +7,6 @@ namespace EscolaWeb.Services.Professor
     {
         List<ProfessorModel> BuscarProfessores();
         ProfessorModel ObterProfessorComTurmasEAlunos(int id);
+        ProfessorModel CadastrarProfessor(ProfessorCriacaoDto professorCriacaoDto);
     }
 }

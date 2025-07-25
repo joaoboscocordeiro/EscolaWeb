@@ -8,7 +8,7 @@ namespace EscolaWeb.Models
         public string Nome { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public DateTime? DataContratacao { get; set; }
-        public int MateriaId { get; set; }
+        public int? MateriaId { get; set; }
         public MateriaModel Materia { get; set; }
         [JsonIgnore]
         public List<TurmaModel> Turmas { get; set; }

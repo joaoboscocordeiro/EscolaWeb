@@ -35,22 +35,33 @@
         <span asp-validation-for="DataContratacao" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label class="form-label">Selecione as Turmas:</label>
-        <select>
-            <option value="Turma A">Turma A</option>
+    <div class="mb-3">
+        <label for="Turmas" class="form-label">Selecione as Turmas:</label>
+        <select id="Turmas" class="form-select" name="TurmasId" multiple="multiple" asp-for="TurmasId">
+            @foreach(var turna in ViewBag.Turmas)
+            {
+                <option value="@turna.Value">@turna.Text</option>
+            }
         </select>
+        <span asp-validation-for="TurmasId" class="text-danger"></span>
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label class="form-label">Selecione a Matéria:</label>
-        <select>
-            <option value="Matemática">Matemática</option>
+        <select class="form-select" asp-for="MateriaId">
+            @foreach (var materia in ViewBag.Materias)
+            {
+                <option value="@materia.Value">@materia.Text</option>
+            }
         </select>
+        <span asp-validation-for="MateriaId" class="text-danger"></span>
     </div>
 
     <div class="d-flex flex-row justify-content-center gap-5">
-        <button type="submit" class="btn-primary w-25">Criar Professor</button>
+        <button type="submit" class="btn btn-primary w-25">Criar Professor</button>
         <a class="btn btn-secondary w-25" asp-controller="Professor" asp-action="ListarProfessor">Voltar</a>
     </div>
 
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/Professor/Professor.js"></script>
