@@ -1,6 +1,9 @@
-﻿namespace EscolaWeb.Services.Aluno
+﻿using EscolaWeb.Models;
+
+namespace EscolaWeb.Services.Aluno
 {
     public interface IAlunoInterface
     {
+        List<AlunoModel> BuscarAlunosPorTurma(int idTurma);
     }
 }

@@ -42,3 +42,45 @@ $(document).on("click", "#professores", function () {
     })
 
 })
+
+$(document).on("click", "#alunos", function () {
+
+    var idTurma = $(this).attr("data-idturma");
+    var nomeTurma = $(this).attr("data-nometurma");
+    var tabelaAlunos = "";
+
+    $.ajax({
+        url: `/Aluno/AlunosDaTurma/` + idTurma,
+        type: `GET`,
+        success: function (response) {
+            if (response.dados.length == 0) {
+                tabelaAlunos += `
+                    <tr>
+                        <td colspan="4" class="text-center">Nenhum aluno vinculado!</td>
+                    </tr>
+                `;
+            }
+            else {
+                response.dados.forEach(a => {
+                    tabelaAlunos += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.matricula}</td>
+                        <td>${a.nome}</td>
+                        <td>${a.email}</td>
+                    </tr>
+                    `
+                })
+            }
+
+            document.querySelector("#modalAlunos .modal-body table tbody").innerHTML = tabelaAlunos;
+
+            document.getElementById("textModalAlunos").innerHTML = nomeTurma;
+
+            var meuModal = new bootstrap.Modal(document.getElementById("modalAlunos"));
+
+            meuModal.show();
+        }
+    })
+
+})
