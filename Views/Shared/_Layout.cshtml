@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - EscolaWeb</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yeti.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EscolaWeb.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -26,6 +26,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Professor" asp-action="ListarProfessor">Professores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Aluno" asp-action="ListarAlunos">Alunos</a>
                         </li>
                     </ul>
                 </div>

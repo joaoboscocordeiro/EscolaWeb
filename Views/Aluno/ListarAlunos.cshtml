@@ -1,0 +1,42 @@
+﻿@model List<AlunoModel>
+
+<div class="mb-5 d-flex justify-content-between align-items-center">
+    <h1>Listagem de Alunos</h1>
+    <a asp-action="CadastrarAluno" asp-controller="Aluno" class="btn btn-success">Cadastro Aluno</a>
+</div>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<table class="table table-striped table-bordered" id="registros">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Turma</th>
+            <th scope="col">Data Nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in Model)
+        {
+            <tr>
+                <th scope="row">@aluno.Nome</th>
+                <td>@aluno.Matricula</td>
+                <td>@aluno.Turma.Descricao</td>
+                <td>@aluno.DataNascimento</td>
+            </tr>
+        }
+    </tbody>
+</table>

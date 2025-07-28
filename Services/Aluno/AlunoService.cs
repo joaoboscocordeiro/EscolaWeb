@@ -1,5 +1,6 @@
 ﻿using EscolaWeb.Data;
 using EscolaWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EscolaWeb.Services.Aluno
 {
@@ -10,6 +11,19 @@ namespace EscolaWeb.Services.Aluno
         public AlunoService(AppDbContext context)
         {
             _context = context;
+        }
+
+        public List<AlunoModel> BuscarAlunos()
+        {
+            try
+            {
+                var alunos = _context.Alunos.Include(t => t.Turma).ToList();
+                return alunos;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<AlunoModel> BuscarAlunosPorTurma(int idTurma)

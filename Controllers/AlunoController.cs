@@ -13,6 +13,13 @@ namespace EscolaWeb.Controllers
         }
 
         [HttpGet]
+        public IActionResult ListarAlunos()
+        {
+            var alunos = _alunoInterface.BuscarAlunos();
+            return View(alunos);
+        }
+
+        [HttpGet]
         [Route("/Aluno/AlunosDaTurma/{idTurma}")]
         public IActionResult AlunosDaTurma(int idTurma)
         {
