@@ -1,8 +1,47 @@
 ﻿@model List<AlunoModel>
 
+<style>
+
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+    .row{
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        width: 100%
+    }
+
+    .card{
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer
+    }
+
+    .card:hover{
+        transform: scale(1.05);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0.2); 
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit
+    }
+
+    a.focus, a.hover{
+        text-decoration: none;
+        color: inherit
+    }
+
+</style>
+
 <div class="mb-5 d-flex justify-content-between align-items-center">
     <h1>Listagem de Alunos</h1>
-    <a asp-action="CadastrarAluno" asp-controller="Aluno" class="btn btn-success">Cadastro Aluno</a>
+    <a class="btn btn-success" asp-controller="Aluno" asp-action="CadastrarAluno">Cadastro Aluno</a>
 </div>
 
 @if (TempData["MensagemSucesso"] != null)
@@ -19,7 +58,27 @@
     </div>
 }
 
-<table class="table table-striped table-bordered" id="registros">
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var aluno in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-4 d-flex justify-content-center align-items-center">
+                <a asp-controller="Historico" asp-action="GerarHistorico" asp-route-id="@aluno.Id">
+                    <div class="card shadow-sm" style="min-width: 350px; max-width: 400px; width: 100px">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">@aluno.Nome</h5>
+                            <h5 class="card-text"><strong>Matrícula:</strong> @aluno.Matricula</h5>
+                            <p class="card-text"><strong>Turma:</strong> @aluno.Turma.Descricao</p>
+                            <p class="card-text"><strong>Data Nascimento:</strong> @aluno.DataNascimento?.ToString("dd/MM/yyyy")</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@* <table class="table table-striped table-bordered" id="registros">
     <thead class="table-primary">
         <tr>
             <th scope="col">Nome</th>
@@ -39,4 +98,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
