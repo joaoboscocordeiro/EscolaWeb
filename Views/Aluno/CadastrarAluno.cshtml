@@ -1,0 +1,51 @@
+﻿@model AlunoModel
+
+<h1>Cadastro Alunos</h1>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-action="CadastrarAluno" asp-controller="Aluno" method="post">
+
+    <div class="form-group">
+        <label class="form-label">Nome:</label>
+        <input type="text" class="form-control" placeholder="Nome" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label class="form-label">Data de Nascimento:</label>
+        <input type="date" class="form-control" placeholder="Data de Nascimento" asp-for="DataNascimento" />
+        <span asp-validation-for="DataNascimento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Selecione Turma:</label>
+        <select class="form-select" style="width: 100%" asp-for="TurmaId">
+            @foreach (var turna in ViewBag.Turmas)
+            {
+                <option value="@turna.Value">@turna.Text</option>
+            }
+        </select>
+        <span asp-validation-for="TurmaId" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center gap-5">
+        <button type="submit" class="btn btn-primary w-25">Criar Aluno</button>
+        <a class="btn btn-secondary w-25" asp-controller="Aluno" asp-action="ListarAlunos">Voltar</a>
+    </div>
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
