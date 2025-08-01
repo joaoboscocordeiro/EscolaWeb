@@ -6,5 +6,6 @@ namespace EscolaWeb.Services.Aluno
     {
         List<AlunoModel> BuscarAlunosPorTurma(int idTurma);
         List<AlunoModel> BuscarAlunos();
+        AlunoModel CadastrarAluno(AlunoModel alunoModel);
     }
 }

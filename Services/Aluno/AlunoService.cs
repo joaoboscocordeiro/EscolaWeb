@@ -38,5 +38,28 @@ namespace EscolaWeb.Services.Aluno
                 return null;
             }
         }
+
+        public AlunoModel CadastrarAluno(AlunoModel alunoModel)
+        {
+            try
+            {
+                alunoModel.Matricula = GerarMatricula();
+                alunoModel.Email = $"{alunoModel.Nome.Replace(" ", "").Trim() + alunoModel.Matricula}@gmail.com";
+
+                _context.Alunos.Add(alunoModel);
+                _context.SaveChanges();
+                return alunoModel;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private int GerarMatricula()
+        {
+            Random random = new Random();
+            return random.Next(1000, 99999);
+        }
     }
 }
