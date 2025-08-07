@@ -13,6 +13,19 @@ namespace EscolaWeb.Services.Historico
             _context = context;
         }
 
+        public List<HistoricoModel> BuscarNotas()
+        {
+            try
+            {
+                var historicos = _context.Historicos.Include(a => a.Aluno).Include(m => m.Materia).ToList();
+                return historicos;
+            }
+            catch 
+            {
+                return null;
+            }
+        }
+
         public List<HistoricoModel> GerarHistorico(int idAluno)
         {
             try

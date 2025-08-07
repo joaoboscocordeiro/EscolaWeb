@@ -32,5 +32,12 @@ namespace EscolaWeb.Controllers
 
             return View(historicos);
         }
+
+        [HttpGet]
+        public IActionResult LancarNotas()
+        {
+            var notas = _historicoInterface.BuscarNotas();
+            return View(notas);
+        }
     }
 }
