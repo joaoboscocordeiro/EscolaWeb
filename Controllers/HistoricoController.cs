@@ -45,6 +45,20 @@ namespace EscolaWeb.Controllers
             return View(notas);
         }
 
+        [HttpPost]
+        [Route("/Historico/AtualizarNota")]
+        public IActionResult AtualizarNota(int idHistorico, string campo, string valor)
+        {
+            var historico = _historicoInterface.AtualizarNota(idHistorico, campo, valor);
+
+            if (historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+
+            return Json(new { resultado = true, media = historico.Media });
+        }
+
         private void BuscarMateria()
         {
             var materias = _materiaInterface.BuscarMateria();

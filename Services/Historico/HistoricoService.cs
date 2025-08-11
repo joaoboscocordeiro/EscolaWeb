@@ -13,6 +13,38 @@ namespace EscolaWeb.Services.Historico
             _context = context;
         }
 
+        public HistoricoModel AtualizarNota(int idHistorico, string campo, string valor)
+        {
+            try
+            {
+                var historico = _context.Historicos
+                    .Include(m => m.Materia)
+                    .Include(a => a.Aluno)
+                    .Where(h => h.Id == idHistorico)
+                    .FirstOrDefault();
+
+                if (historico == null) return null;
+
+                switch (campo)
+                {
+                    case "Nota1": historico.Nota1 = Double.Parse(valor); break;
+                    case "Nota2": historico.Nota2 = Double.Parse(valor); break;
+                    case "Nota3": historico.Nota3 = Double.Parse(valor); break;
+                    case "Nota4": historico.Nota4 = Double.Parse(valor); break;
+                }
+
+                historico.Media = (historico.Nota1 + historico.Nota2 + historico.Nota3 + historico.Nota4) / 4;
+
+                _context.SaveChanges();
+
+                return historico;
+            }
+            catch 
+            {
+                return null;
+            }
+        }
+
         public List<HistoricoModel> BuscarNotas()
         {
             try
