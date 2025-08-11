@@ -93,5 +93,27 @@ namespace EscolaWeb.Services.Historico
                 return null;
             }
         }
+
+        public HistoricoModel SalvarNotas(HistoricoModel historico, int matricula, int materiaId)
+        {
+            try
+            {
+                var aluno = _context.Alunos.FirstOrDefault(a => a.Matricula == matricula);
+                
+                historico.AlunoId = aluno.Id;
+                historico.MateriaId = materiaId;
+
+                historico.Media = (historico.Nota1 + historico.Nota2 + historico.Nota3 + historico.Nota4) / 4;
+
+                _context.Add(historico);
+                _context.SaveChanges();
+
+                return historico;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

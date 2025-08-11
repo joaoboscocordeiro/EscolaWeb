@@ -1,4 +1,5 @@
-﻿using EscolaWeb.Services.Historico;
+﻿using EscolaWeb.Models;
+using EscolaWeb.Services.Historico;
 using EscolaWeb.Services.Materia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -64,6 +65,20 @@ namespace EscolaWeb.Controllers
         public IActionResult RemoverNota(int idHistorico)
         {
             var historico = _historicoInterface.RemoverNota(idHistorico);
+
+            if (historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+
+            return Json(new { resultado = true });
+        }
+
+        [HttpPost]
+        [Route("/Historico/SalvarNotas")]
+        public IActionResult SalvarNotas(HistoricoModel notas, int matricula, int materiaId)
+        {
+            var historico = _historicoInterface.SalvarNotas(notas, matricula, materiaId);
 
             if (historico == null)
             {
