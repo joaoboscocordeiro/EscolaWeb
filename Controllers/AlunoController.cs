@@ -32,6 +32,14 @@ namespace EscolaWeb.Controllers
         }
 
         [HttpGet]
+        [Route("/Aluno/BuscarAlunoPorMatricula")]
+        public IActionResult BuscarAlunoPorMatricula(int matricula)
+        {
+            var aluno = _alunoInterface.BuscarAlunoPorMatricula(matricula);
+            return Json(new {dados = aluno});
+        }
+
+        [HttpGet]
         [Route("/Aluno/AlunosDaTurma/{idTurma}")]
         public IActionResult AlunosDaTurma(int idTurma)
         {
