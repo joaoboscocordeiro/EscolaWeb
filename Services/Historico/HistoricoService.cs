@@ -76,5 +76,22 @@ namespace EscolaWeb.Services.Historico
                 return null;
             }
         }
+
+        public HistoricoModel RemoverNota(int idHistorico)
+        {
+            try
+            {
+                var historico = _context.Historicos.Find(idHistorico);
+
+                _context.Remove(historico);
+                _context.SaveChanges();
+
+                return historico;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -59,4 +59,20 @@ $(document).ready(function () {
 
     })
 
+    $(document).on("click", ".btn-delete", function () {
+        var linha = $(this).closest('tr');
+        var idHistorico = linha.attr("data-id");
+
+        $.post("/Historico/RemoverNota", { idHistorico: idHistorico }, function (response) {
+            if (response.resultado) {
+                linha.remove();
+                showMessage("success", "Usuário removido com sucesso!");
+            } else {
+                showMessage("danger", "Erro ao remover o aluno!");
+            }
+        }).fail(function () {
+            showMessage("danger", "Erro na comunicação com o servidor!");
+        })
+    })
+
 })

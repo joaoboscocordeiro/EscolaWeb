@@ -7,5 +7,6 @@ namespace EscolaWeb.Services.Historico
         List<HistoricoModel> GerarHistorico(int idAluno);
         List<HistoricoModel> BuscarNotas();
         HistoricoModel AtualizarNota(int idHistorico, string campo, string valor);
+        HistoricoModel RemoverNota(int idHistorico);
     }
 }

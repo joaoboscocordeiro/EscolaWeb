@@ -59,6 +59,20 @@ namespace EscolaWeb.Controllers
             return Json(new { resultado = true, media = historico.Media });
         }
 
+        [HttpPost]
+        [Route("/Historico/RemoverNota")]
+        public IActionResult RemoverNota(int idHistorico)
+        {
+            var historico = _historicoInterface.RemoverNota(idHistorico);
+
+            if (historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+
+            return Json(new { resultado = true });
+        }
+
         private void BuscarMateria()
         {
             var materias = _materiaInterface.BuscarMateria();
