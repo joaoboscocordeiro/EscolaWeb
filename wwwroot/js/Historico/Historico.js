@@ -87,6 +87,13 @@ $(document).ready(function () {
             Nota4: linha.find("td:eq(6)").text()
         }
 
+        var temNotaInvalida = Object.values(notas).some(nota => nota == null || nota == "");
+
+        if (temNotaInvalida || matricula == null || matricula == "") {
+            showMessage("danger", "Alguma informação não foi inserida!");
+            return;
+        }
+
         $.post("/Historico/SalvarNotas", { notas, matricula, materiaId }, function (response) {
             if (response.resultado) {
                 location.reload();
